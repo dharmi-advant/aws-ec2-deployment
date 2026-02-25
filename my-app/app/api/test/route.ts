@@ -23,12 +23,9 @@ export async function GET() {
       { status: 503 }
     )
   }
-  const user = await prisma.user.create({
-    data: {
-      name: "Khushal",
-      role: "admin"
-    }
-  })
 
-  return NextResponse.json(user)
+  const users = await prisma.user.findMany()
+
+
+  return NextResponse.json(users || [])
 }
